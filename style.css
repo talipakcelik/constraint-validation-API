@@ -1,0 +1,39 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  max-width: 120rem;
+  font-size: 2.2rem;
+  margin: auto;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #888;
+  color: #fff;
+  padding: 5rem 0 5rem 0;
+}
+
+input:required + .instructions::before {
+  content: '* required';
+  display: inline-block;
+  color: rgb(68, 9, 9);
+  font-size: 2.2rem;
+}
+
+select + .instructions::before {
+  content: '* required';
+  display: inline-block;
+  color: rgb(68, 9, 9);
+  font-size: 2.2rem;
+}
