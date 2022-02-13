@@ -8,6 +8,11 @@ const pw = document.querySelector('#pw');
 const pwErrMsg = document.querySelector('.pwErrMsg');
 const confirmPw = document.querySelector('#confirm-pw');
 const confirmPwErrMsg = document.querySelector('.confirmPwErrMsg');
+const upper = document.querySelector('.upper');
+const lower = document.querySelector('.lower');
+const num = document.querySelector('.num');
+const len = document.querySelector('.len');
+const invalid = document.querySelector('.invalid');
 
 console.log(email.validity);
 
@@ -70,6 +75,60 @@ pw.addEventListener('change', function () {
     pw.setCustomValidity('');
     pwErrMsg.textContent = '';
   }
+});
+
+pw.addEventListener('input', function () {
+  let response = {
+    upper: false,
+    lower: false,
+    num: false,
+    len: false,
+    matches: null,
+    invalid: true,
+  };
+
+  let txt = pw.value.trim();
+  response.upper = /[A-Z]/.test(txt);
+  response.lower = /[a-z]/.test(txt);
+  response.num = /[0-9]/.test(txt);
+  response.len = pw.value.trim().length >= 8;
+  response.matches = txt.match(/([^A-Za-z0-9_!@#$%^&*().,?;:~])/);
+  if (response.matches && response.matches.length > 0) {
+    response.invalid = false;
+  }
+  console.log(response);
+  console.log(response.matches);
+
+  if (response.upper === false) {
+    upper.style.color = 'pink';
+  } else {
+    upper.style.color = 'white';
+  }
+
+  if (response.lower === false) {
+    lower.style.color = 'pink';
+  } else {
+    lower.style.color = 'white';
+  }
+
+  if (response.num === false) {
+    num.style.color = 'pink';
+  } else {
+    num.style.color = 'white';
+  }
+
+  if (response.len === false) {
+    len.style.color = 'pink';
+  } else {
+    len.style.color = 'white';
+  }
+
+  if (response.matches) {
+    invalid.style.color = 'pink';
+  } else {
+    invalid.style.color = 'white';
+  }
+  return response;
 });
 
 confirmPw.addEventListener('change', function () {
