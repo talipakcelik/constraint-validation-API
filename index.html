@@ -9,6 +9,9 @@
     <script src="script.js" defer></script>
   </head>
   <body>
+    <head>
+      Constraint Validation API Project
+    </head>
     <div class="form">
       <form action="" novalidate>
         <label for="email">Email:</label>
@@ -98,7 +101,10 @@
           <i class="confirm-pw-vis"><ion-icon name="eye-outline"></ion-icon></i>
         </div>
         <span class="confirmPwErrMsg">&nbsp;</span>
-        <button id="submit">Submit</button>
+        <div class="btn-container">
+          <button id="submit">Submit</button>
+          <span class="valid"></span>
+        </div>
       </form>
     </div>
     <script
