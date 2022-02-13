@@ -13,6 +13,8 @@ const lower = document.querySelector('.lower');
 const num = document.querySelector('.num');
 const len = document.querySelector('.len');
 const invalid = document.querySelector('.invalid');
+const btn1 = document.querySelector('.pw-vis');
+const btn2 = document.querySelector('.confirm-pw-vis');
 
 console.log(email.validity);
 
@@ -102,8 +104,6 @@ pw.addEventListener('input', function (e) {
   if (response.matches && response.matches.length > 0) {
     response.invalid = false;
   }
-  console.log(response);
-  console.log(response.matches);
 
   if (response.upper === false) {
     upper.style.color = 'hsla(0, 85%, 61%, 1)';
@@ -196,6 +196,21 @@ function showError() {
     confirmPwErrMsg.textContent = 'You need to enter a password';
   }
 }
+
+btn1.addEventListener('click', function (e) {
+  const revealed = pw.getAttribute('type') === 'text';
+  pw.setAttribute('type', revealed ? 'password' : 'text');
+  e.currentTarget.innerHTML = revealed
+    ? '<ion-icon name="eye-outline"></ion-icon>'
+    : '<ion-icon name="eye-off-outline"></ion-icon>';
+});
+btn2.addEventListener('click', function (e) {
+  const revealed = confirmPw.getAttribute('type') === 'text';
+  confirmPw.setAttribute('type', revealed ? 'password' : 'text');
+  e.currentTarget.innerHTML = revealed
+    ? '<ion-icon name="eye-outline"></ion-icon>'
+    : '<ion-icon name="eye-off-outline"></ion-icon>';
+});
 
 form.addEventListener('submit', function (event) {
   let emailCheck = email.checkValidity();
