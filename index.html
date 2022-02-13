@@ -19,7 +19,7 @@
           required
         />
         <span class="errMessage">&nbsp;</span>
-        <label for="country">Country:</label>
+        <label for="country">Country: </label>
         <select id="country" name="country">
           <option value="Belgium">Belgium</option>
           <option value="Brazil">Brazil</option>
@@ -51,16 +51,28 @@
         </select>
         <span class="countryErrMsg">&nbsp;</span>
         <label for="zip">Zip Code:</label>
-        <input id="zip" name="zip" type="text" required />
-        <span class="zipErrMsg">&nbsp;</span>
-        <label for="password">Your Password:</label>
         <input
-          type="password"
-          id="pw"
-          minlength="8"
-          autocomplete="off"
+          id="zip"
+          name="zip"
+          type="text"
+          placeholder="Enter your zip code"
           required
         />
+        <span class="zipErrMsg">&nbsp;</span>
+        <label for="password">Your Password:</label>
+
+        <div class="pw-container">
+          <input
+            type="password"
+            id="pw"
+            minlength="8"
+            autocomplete="off"
+            placeholder="Enter your password"
+            required
+          />
+          <i class="pw-vis"><ion-icon name="eye-outline"></ion-icon></i>
+        </div>
+
         <span class="pwErrMsg">&nbsp;</span>
         <span class="instructions"
           ><span class="errMessage"></span>
@@ -74,16 +86,28 @@
           </span>
         </span>
         <label for="password">Confirm Password:</label>
-        <input
-          type="password"
-          id="confirm-pw"
-          minlength="8"
-          autocomplete="off"
-          required
-        />
+        <div class="pw-container">
+          <input
+            type="password"
+            id="confirm-pw"
+            minlength="8"
+            autocomplete="off"
+            placeholder="Confirm your password"
+            required
+          />
+          <i class="confirm-pw-vis"><ion-icon name="eye-outline"></ion-icon></i>
+        </div>
         <span class="confirmPwErrMsg">&nbsp;</span>
         <button id="submit">Submit</button>
       </form>
     </div>
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"
+    ></script>
+    <script
+      nomodule
+      src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"
+    ></script>
   </body>
 </html>
