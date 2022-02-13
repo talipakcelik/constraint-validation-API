@@ -62,6 +62,10 @@ pw.addEventListener('change', function () {
     pwErrMsg.textContent = 'You need to enter a password.';
     pw.setCustomValidity('Please enter a password');
     pw.reportValidity();
+  } else if (pw.validity.typeMismatch) {
+    pwErrMsg.textContent = 'Entered value needs to be a password';
+  } else if (pw.validity.tooShort) {
+    pwErrMsg.textContent = 'At least 8 characters long';
   } else {
     pw.setCustomValidity('');
     pwErrMsg.textContent = '';
@@ -73,6 +77,10 @@ confirmPw.addEventListener('change', function () {
     confirmPwErrMsg.textContent = 'You need to enter a confirm password.';
     confirmPw.setCustomValidity('Please enter a confirm password');
     confirmPw.reportValidity();
+  } else if (confirmPw.validity.typeMismatch) {
+    confirmPwErrMsg.textContent = 'Entered value needs to be a password';
+  } else if (confirmPw.validity.tooShort) {
+    confirmPwErrMsg.textContent = 'At least 8 characters long';
   } else {
     confirmPw.setCustomValidity('');
     confirmPwErrMsg.textContent = '';
@@ -98,10 +106,12 @@ function showError() {
     pwErrMsg.textContent = 'You need to enter a password';
   } else if (pw.validity.typeMismatch) {
     pwErrMsg.textContent = 'Entered value needs to be a password';
+  } else if (pw.validity.tooShort) {
+    pwErrMsg.textContent = 'At least 8 characters long';
   }
 
-  if (pw.validity.valueMissing) {
-    pwErrMsg.textContent = 'You need to enter a password';
+  if (confirmPw.validity.valueMissing) {
+    confirmPwErrMsg.textContent = 'You need to enter a password';
   }
 }
 
