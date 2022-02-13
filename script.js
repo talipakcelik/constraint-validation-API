@@ -15,30 +15,21 @@ const len = document.querySelector('.len');
 const invalid = document.querySelector('.invalid');
 const btn1 = document.querySelector('.pw-vis');
 const btn2 = document.querySelector('.confirm-pw-vis');
-
-console.log(email.validity);
-
-console.log(email.willValidate);
-
-console.log(email.checkValidity());
+const valid = document.querySelector('.valid');
 
 email.addEventListener('input', function (e) {
   email.setCustomValidity('');
   let emailCheck = email.checkValidity();
 
-  console.log(emailCheck);
   // checkValidity: true so emailCheck: true
   if (emailCheck) {
     // it looks built-in email validation "string + @ + string"
     // trigger invalid listener
     let emailRegex = new RegExp('@gmail.com$', 'i');
     if (emailRegex.test(email.value) === false) {
-      console.log('email değil');
-
       email.setCustomValidity('NOT a gmail address'); // set in property
       // so custom error: true
       email.reportValidity(); // show the custom message, also trigger invalid listener
-      console.log(email.validity);
     } else if (emailRegex.test(email.value) === true) {
       emailErrMsg.innerHTML = '&nbsp';
       e.target.style.outlineColor = 'hsla(153, 46%, 49%, 1)';
@@ -214,41 +205,29 @@ btn2.addEventListener('click', function (e) {
 
 form.addEventListener('submit', function (event) {
   let emailCheck = email.checkValidity();
+  let zipCheck = zip.checkValidity();
+  let pwCheck = pw.checkValidity();
+  let confirmPwCheck = confirmPw.checkValidity();
 
   if (!emailCheck) {
     showError();
     event.preventDefault(); // prevent the form from being sent
-  }
-
-  let zipCheck = zip.checkValidity();
-  if (!zipCheck) {
+  } else if (!zipCheck) {
     showError();
     event.preventDefault();
-  }
-
-  let pwCheck = pw.checkValidity();
-
-  if (!pwCheck) {
+  } else if (!pwCheck) {
     showError();
     event.preventDefault();
-  }
-
-  let confirmPwCheck = confirmPw.checkValidity();
-
-  if (!confirmPwCheck) {
+  } else if (!confirmPwCheck) {
     showError();
     event.preventDefault();
-  }
-
-  if (pw.value !== confirmPw.value) {
+  } else if (pw.value !== confirmPw.value) {
     event.preventDefault();
     confirmPwErrMsg.textContent = 'Passwords do not match';
     confirmPw.style.outlineColor = 'hsla(0, 85%, 61%, 1)';
   } else if (confirmPw.validity.tooShort === true) {
     confirmPwErrMsg.textContent = 'At least 8 characters long';
-  }
-
-  if (
+  } else if (
     response.upper === false ||
     response.lower === false ||
     response.num === false ||
@@ -256,5 +235,8 @@ form.addEventListener('submit', function (event) {
     response.matches
   ) {
     event.preventDefault();
+  } else {
+    event.preventDefault();
+    valid.textContent = 'The form has been successfully submitted ✅';
   }
 });
